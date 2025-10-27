@@ -1,0 +1,80 @@
+# Python
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# AWS Credentials (NEVER commit these!)
+.aws/
+*.pem
+*.key
+credentials
+config
+
+# Environment Variables
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# SageMaker
+.sagemaker/
+sagemaker-output/
+model.tar.gz
+output/
+
+# Logs
+*.log
+logs/
+
+# Data files (usually too large for git)
+*.csv
+*.parquet
+*.pkl
+*.joblib
+data/
+datasets/
+
+# Model artifacts
+models/
+checkpoints/
+*.pt
+*.pth
+*.h5
+*.ckpt
+
