@@ -60,69 +60,13 @@ aws configure sso
 
 ```
 sagemaker_LLMops/
-├── notebooks/
-│   ├── getting_started.ipynb          # Introduction to SageMaker
-│   ├── huggingface_deployment.ipynb   # Model deployment code
-│   └── model_inference.ipynb          # Testing and inference
+
 ├── src/
-│   ├── deploy_model.py                # Deployment script
-│   └── test_endpoint.py               # Testing utilities
+│   ├── deploy_model.py                # Deployment script         
 ├── config/
 │   └── model_config.json              # Model configuration
 ├── requirements.txt                   # Python dependencies
 └── README.md                          # This file
-```
-
-## 💻 Usage
-
-### Deploy Hugging Face Model
-
-```python
-from sagemaker.huggingface.model import HuggingFaceModel
-
-# Model configuration
-hub = {
-    "HF_MODEL_ID": "distilbert-base-uncased-distilled-squad",
-    "HF_TASK": "question-answering"
-}
-
-# Create and deploy model
-huggingface_model = HuggingFaceModel(
-    env=hub,
-    role=role,
-    transformers_version="4.26",
-    pytorch_version="1.13",
-    py_version="py39"
-)
-
-predictor = huggingface_model.deploy(
-    initial_instance_count=1,
-    instance_type="ml.m5.xlarge"
-)
-```
-
-### Run Inference
-
-```python
-# Prepare input data
-data = {
-    "inputs": {
-        "question": "What is Amazon SageMaker?",
-        "context": "Amazon SageMaker is a fully managed machine learning service. With SageMaker, data scientists and developers can quickly build and train machine learning models, and then deploy them into a production-ready hosted environment."
-    }
-}
-
-# Get prediction
-response = predictor.predict(data)
-print(f"Answer: {response['answer']}")
-print(f"Confidence: {response['score']:.2%}")
-```
-
-### Clean Up Resources
-
-```python
-# Delete endpoint to stop charges
-predictor.delete_endpoint(delete_endpoint_config=False)
 ```
 
 ## 🤖 Supported Models
@@ -134,25 +78,6 @@ This project demonstrates Question-Answering, but can be adapted for:
 - **Text Summarization**: BART, T5
 - **Named Entity Recognition**: BERT-NER
 - **Translation**: MarianMT, T5
-
-## 💰 Cost Optimization
-
-### Instance Pricing (us-east-1)
-
-| Instance Type | vCPU | Memory | Cost/Hour | Best For |
-|---------------|------|--------|-----------|----------|
-| ml.t3.medium  | 2    | 4 GB   | $0.05     | Testing/Development |
-| ml.m5.large   | 2    | 8 GB   | $0.115    | Light production |
-| ml.m5.xlarge  | 4    | 16 GB  | $0.23     | Production workloads |
-| ml.g4dn.xlarge| 4    | 16 GB  | $0.74     | GPU inference |
-
-### Cost Saving Tips
-
-✅ **Always delete endpoints** when not in use  
-✅ **Use smaller instances** for testing (ml.t3.medium)  
-✅ **Enable auto-scaling** for variable traffic  
-✅ **Use batch transform** for large datasets instead of real-time endpoints  
-✅ **Monitor CloudWatch** for endpoint utilization  
 
 ## 🔐 Security & IAM
 
@@ -229,13 +154,7 @@ Contributions are welcome! Please follow these steps:
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 👤 Author
-
-**Omkarnath Thakur**
-- GitHub: [@yourusername](https://github.com/yourusername)
-- Email: othakur@umd.edu
 
 ## 🙏 Acknowledgments
 
@@ -253,12 +172,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Implement caching for frequently asked questions
 - [ ] Add Gradio/Streamlit UI for demo
 
-## 📞 Support
 
-For questions or issues, please:
-1. Check the [Troubleshooting](#-troubleshooting) section
-2. Open an [Issue](https://github.com/yourusername/sagemaker_LLMops/issues)
-3. Refer to [AWS Support](https://aws.amazon.com/support/)
 
 ---
 
